@@ -16,7 +16,10 @@ limitations under the License.
 
 package v1alpha1
 
-import metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+import (
+	v1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+)
 
 const (
 	ResourceCodeMongoDBModificationRequest     = "mgmodreq"
@@ -42,11 +45,13 @@ type MongoDBModificationRequest struct {
 	Status            MongoDBModificationRequestStatus `json:"status,omitempty" protobuf:"bytes,3,opt,name=status"`
 }
 
-// MongoDBModificationRequestSpec is the spec for elasticsearch version
+// MongoDBModificationRequestSpec is the spec for mongodb version
 type MongoDBModificationRequestSpec struct {
+	Version string                   `json:"version,omitempty" protobuf:"bytes,1,opt,name=version"`
+	MongoDB *v1.LocalObjectReference `json:"mongodb,omitempty" protobuf:"bytes,2,opt,name=mongoDB"`
 }
 
-// MongoDBModificationRequestStatus is the status for elasticsearch version
+// MongoDBModificationRequestStatus is the status for mongodb version
 type MongoDBModificationRequestStatus struct {
 	// Conditions applied to the request, such as approval or denial.
 	// +optional

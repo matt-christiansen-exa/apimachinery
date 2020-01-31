@@ -21,6 +21,7 @@ syntax = 'proto2';
 
 package kubedb.dev.apimachinery.apis.dba.v1alpha1;
 
+import "k8s.io/api/core/v1/generated.proto";
 import "k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto";
 import "k8s.io/apimachinery/pkg/runtime/generated.proto";
 import "k8s.io/apimachinery/pkg/runtime/schema/generated.proto";
@@ -201,11 +202,14 @@ message MongoDBModificationRequestList {
   repeated MongoDBModificationRequest items = 2;
 }
 
-// MongoDBModificationRequestSpec is the spec for elasticsearch version
+// MongoDBModificationRequestSpec is the spec for mongodb version
 message MongoDBModificationRequestSpec {
+  optional string version = 1;
+
+  optional k8s.io.api.core.v1.LocalObjectReference mongoDB = 2;
 }
 
-// MongoDBModificationRequestStatus is the status for elasticsearch version
+// MongoDBModificationRequestStatus is the status for mongodb version
 message MongoDBModificationRequestStatus {
   // Conditions applied to the request, such as approval or denial.
   // +optional
