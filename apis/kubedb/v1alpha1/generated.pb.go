@@ -8805,7 +8805,6 @@ func (this *MongoDBStatus) String() string {
 	s := strings.Join([]string{`&MongoDBStatus{`,
 		`Phase:` + fmt.Sprintf("%v", this.Phase) + `,`,
 		`Reason:` + fmt.Sprintf("%v", this.Reason) + `,`,
-		`ObservedGeneration:` + fmt.Sprintf("%v", this.ObservedGeneration) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -16415,25 +16414,6 @@ func (m *MongoDBStatus) Unmarshal(dAtA []byte) error {
 			}
 			m.Reason = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ObservedGeneration", wireType)
-			}
-			m.ObservedGeneration = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowGenerated
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.ObservedGeneration |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipGenerated(dAtA[iNdEx:])
